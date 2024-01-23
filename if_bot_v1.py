@@ -40,7 +40,7 @@ def user_s(message):
     cu.close()
     c.close()
 
-    bot.send_message(message.chat.id, 'Данные успешно сохранены!')
+    bot.send_message(message.chat.id, 'Данные успешно сохранены! :)')
 
 
 
