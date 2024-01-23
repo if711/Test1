@@ -2,7 +2,7 @@ import telebot
 import sqlite3
 
 bot = telebot.TeleBot('6277074360:AAFc43T6H8s3n6xJYox430lVkDlUv1t0fyo')
-dt = None
+date = None
 n = None
 
 @bot.message_handler(commands=['start'])
@@ -19,8 +19,8 @@ def start(message):
     bot.register_next_step_handler(message,user_dt)
 
 def user_dt(message):
-    global dt
-    dt = message.text.strip()
+    global date
+    date = message.text.strip()
     bot.send_message(message.chat.id, 'Введите наименование выполненной затраты:')
     bot.register_next_step_handler(message, user_n)
 
@@ -35,7 +35,7 @@ def user_s(message):
     c = sqlite3.connect('if_bot.db')
     cu = c.cursor()
 
-    cu.execute ("INSERT INTO Base_7 (date, name, sum) VALUES ('%s', '%s', '%s')" % (dt, n, sum))
+    cu.execute ("INSERT INTO Base_7 (date, name, sum) VALUES ('%s', '%s', '%s')" % (date, n, sum))
     c.commit()
     cu.close()
     c.close()
